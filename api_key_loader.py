@@ -13,6 +13,5 @@ API_KEY_FILES = {
 
 def load_api_keys():
     for var_name, key_file in API_KEY_FILES.items():
-        print(key_file)
         with open(key_file, "r") as f:
             os.environ[var_name] = f.read().strip()
