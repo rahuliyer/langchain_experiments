@@ -1,2 +1,3 @@
 .chroma/
 *.pdf
+__pycache__/
