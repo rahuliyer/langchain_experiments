@@ -1,4 +1,9 @@
+import os
+
 from langchain.tools import BaseTool
+from notion_client import Client
+
+NOTION_API_KEY = os.environ.get('NOTION_API_KEY')
 
 import json
 
@@ -7,6 +12,11 @@ class NotionQueryDatabaseTool(BaseTool):
     description = "Use this tool when you need to query for notion databases. The response will be a list of database ids encoded as json. If there are multiple elements, ask for which one to use"
 
     def _run(self, *kwargs) -> str:
+        notion = Client(auth=NOTION_API_KEY)
+
+        databases = notion.databases.list()
+        print(databases)
+
         return json.dumps([{
             "db_id": "db_id_42"
         },
