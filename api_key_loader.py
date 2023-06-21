@@ -4,11 +4,13 @@ HOMEDIR = os.path.expanduser("~")
 OPENAI_API_KEY_FILE = os.path.join(HOMEDIR, ".openai_api_key")
 GOOGLE_SEARCH_API_KEY_FILE = os.path.join(HOMEDIR, ".google_search_api_key")
 GOOGLE_SEARCH_CSE_ID_FILE = os.path.join(HOMEDIR, ".google_search_cse_id")
+NOTION_API_KEY_FILE = os.path.join(HOMEDIR, ".notion_api_key")
 
 API_KEY_FILES = {
     "OPENAI_API_KEY": OPENAI_API_KEY_FILE,
     "GOOGLE_API_KEY": GOOGLE_SEARCH_API_KEY_FILE,
     "GOOGLE_CSE_ID": GOOGLE_SEARCH_CSE_ID_FILE,
+    "NOTION_API_KEY": NOTION_API_KEY_FILE,
 }
 
 def load_api_keys():
