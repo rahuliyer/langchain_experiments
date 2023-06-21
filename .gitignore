@@ -1,3 +1,6 @@
 .chroma/
 *.pdf
 __pycache__/
+*.pkl
+*.idx
+notion_data_dump/
