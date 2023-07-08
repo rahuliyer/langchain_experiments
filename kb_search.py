@@ -52,9 +52,11 @@ def search(index_path):
             })
 
         print(f"{result['text']}")
-        print("Sources:")
+        print("\nSources:")
         for source in sources:
             print(source)
+
+        print("---\n")
 
         memory += result['text'] + "\n"
         if len(memory) > MAX_MEMORY_LEN:
