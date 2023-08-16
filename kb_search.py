@@ -13,7 +13,7 @@ from langchain.vectorstores.faiss import FAISS
 
 MAX_MEMORY_LEN = 4096
 
-def search(index_path):
+def search(index_path, model):
     vectorstore = None
     if os.path.exists(index_path):
         print("Index found. Loading index...")        
@@ -22,10 +22,11 @@ def search(index_path):
         print(f"Index {index_path} doesn't exist")
         sys.exit(-1)
 
-    llm=ChatOpenAI(temperature=0, model="gpt-3.5-turbo-16k")
+    llm=ChatOpenAI(temperature=0, model=model)
     prompt_template = """You are a helpful AI assistant
         Given the context and input text please respond to the question
-        as succinctly as possible:
+        as succinctly as possible. Do not use any other information other
+        than the context and input text.
         Context: {context}
         Input text: {input_text}
         Question: {question}
@@ -68,10 +69,16 @@ if __name__ == "__main__":
 
     # Add required string arguments
     parser.add_argument('--idx_path', type=str, required=True, help='Index file name')
+    parser.add_argument('--model', type=str, required=False, help='Model to use')
 
     # Parse the command line arguments
     args = parser.parse_args()
     idx_path = args.idx_path
 
-    search(idx_path)
+    if args.model == "gpt4":
+        model = "gpt-4"
+    else:
+        model = "gpt-3.5-turbo-16k"
+
+    search(idx_path, model)
 
